@@ -1,0 +1,28 @@
+# Dockerfile.dbt
+FROM python:3.9-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    bash \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install DBT
+RUN pip install dbt-core==1.6.7
+RUN pip install dbt-postgres==1.6.7
+
+# Fix potential protobuf issues
+RUN pip install 'protobuf<4.24.0'
+
+# Set working directory
+WORKDIR /usr/app
+
+# Default command (can be overridden)
+CMD ["sleep", "infinity"]
