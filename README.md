@@ -33,20 +33,19 @@ cd data-pipeline
 ```
 
 ### 2. Project Structure
+```
 .
 ├── airflow/
 │   ├── dags/
-│   └── logs/
-│   └── plugins/
+│   └── Dockerfile
 ├── dbt/
 │   ├── dbt_project.yml
 │   ├── models/
-│   ├── dbt_packages/
 │   └── profiles.yml
 ├── docker-compose.yml
 ├── Dockerfile.dbt
-├── Dockerfile
 └── README.md
+```
 
 ### 3. Build and Start All Services
 ````
@@ -60,8 +59,10 @@ Default credentials:
     Password: admin
 Trigger a DAG
     Once your DAG is added to the airflow/dags/ folder and the container is restarted, you can trigger it from the UI or via CLI:
-    `docker compose exec airflow-webserver airflow dags list`
-    `docker compose exec airflow-webserver airflow dags trigger <dag_id>`
+    ```
+    docker compose exec airflow-webserver airflow dags list
+    docker compose exec airflow-webserver airflow dags trigger <dag_id>
+    ```
 
 ### 5. Postgres
 PostgreSQL stores both raw data and transformed data.
