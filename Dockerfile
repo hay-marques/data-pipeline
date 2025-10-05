@@ -9,9 +9,12 @@ USER airflow
 #RUN pip install 'apache-airflow-providers-docker'
 RUN pip install --no-cache-dir dbt-postgres
 
+# Force specific protobuf version
+RUN pip uninstall protobuf -y
+
 # 🛠️ Pin problematic packages
 RUN pip install \
-    "protobuf<4.24.0" \
+    "protobuf==3.20.3" \
     "apache-airflow[postgres,auth,celery,async,statsd]" \
     "apache-airflow-providers-postgres" \
     "apache-airflow-providers-google"
