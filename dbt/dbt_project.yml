@@ -1,0 +1,30 @@
+name: my_dbt_project
+version: '1.0.0'
+profile: data-ingestion  # This refers to the profile in profiles.yml (typically located in ~/.dbt/)
+
+config-version: 2
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets: ["target", "dbt_modules"]
+
+# Default model configurations
+models:
+  my_dbt_project:  # This must match the name at the top of the file
+    +materialized: table        # default for all models unless overridden
+    +schema: analytics          # default schema unless overridden
+    staging:
+      +schema: staging          # models in models/staging/ go to staging schema
+      +materialized: view       # staging models are lightweight views
+    trusted:
+      +schema: trusted          # models in models/trusted/ go to trusted schema
+      +materialized: table      # trusted models are tables
