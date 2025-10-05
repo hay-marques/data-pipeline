@@ -18,8 +18,9 @@ RUN apt-get update && apt-get install -y \
 RUN pip install dbt-core==1.6.7
 RUN pip install dbt-postgres==1.6.7
 
-# Fix potential protobuf issues
-RUN pip install 'protobuf<4.24.0'
+
+# Force specific protobuf version
+RUN pip uninstall protobuf -y && pip install protobuf==3.20.3
 
 # Set working directory
 WORKDIR /usr/app
