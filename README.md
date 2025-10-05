@@ -37,13 +37,15 @@ cd data-pipeline
 .
 ├── airflow/
 │   ├── dags/
-│   └── Dockerfile
+│   └── logs/
+│   └── plugins/
 ├── dbt/
 │   ├── dbt_project.yml
 │   ├── models/
 │   └── profiles.yml
 ├── docker-compose.yml
 ├── Dockerfile.dbt
+├── Dockerfile
 └── README.md
 ```
 
